@@ -1,0 +1,11 @@
+version: 1
+skills:
+  - name: opencompany/slack
+    description: Interact with Slack workspaces
+    version: "1.0.0"
+  - name: opencompany/first-principles-thinking
+    description: Reason from fundamental truths instead of convention
+    version: "1.0.0"
+  - name: opencompany/yc-group-partner-advice
+    description: Get startup advice in the style of a YC Group Partner
+    version: "1.0.0"

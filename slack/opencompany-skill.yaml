@@ -1,0 +1,110 @@
+version: 1
+
+base_url: https://slack.com/api
+
+secrets:
+  - name: SLACK_BOT_TOKEN
+    description: Slack Bot User OAuth Token
+    required: true
+
+capabilities:
+  read:
+    read_messages:
+      description: Read channel messages and conversation history
+      routes:
+        - GET /conversations.history
+        - GET /conversations.replies
+
+    list_channels:
+      description: List public and private channels in the workspace
+      routes:
+        - GET /conversations.list
+        - GET /conversations.info
+
+    list_users:
+      description: List and look up users in the workspace
+      routes:
+        - GET /users.list
+        - GET /users.info
+        - GET /users.lookupByEmail
+
+    search_messages:
+      description: Search messages in the workspace
+      routes:
+        - GET /search.messages
+        - GET /search.all
+
+    read_files:
+      description: List and read file information
+      routes:
+        - GET /files.list
+        - GET /files.info
+
+  write:
+    send_message:
+      description: Send messages to channels and threads
+      routes:
+        - POST /chat.postMessage
+        - POST /chat.postEphemeral
+
+    update_message:
+      description: Update existing messages
+      routes:
+        - POST /chat.update
+
+    add_reaction:
+      description: Add emoji reactions to messages
+      routes:
+        - POST /reactions.add
+
+    upload_files:
+      description: Upload files to channels
+      routes:
+        - POST /files.upload
+        - POST /files.uploadV2
+
+    set_topic:
+      description: Set channel topic and purpose
+      routes:
+        - POST /conversations.setTopic
+        - POST /conversations.setPurpose
+
+    join_channel:
+      description: Join public channels
+      routes:
+        - POST /conversations.join
+
+  admin:
+    delete_message:
+      description: Delete messages
+      routes:
+        - POST /chat.delete
+
+    remove_reaction:
+      description: Remove emoji reactions from messages
+      routes:
+        - POST /reactions.remove
+
+    delete_files:
+      description: Delete files
+      routes:
+        - POST /files.delete
+
+    manage_channels:
+      description: Create, archive, and rename channels
+      routes:
+        - POST /conversations.create
+        - POST /conversations.archive
+        - POST /conversations.unarchive
+        - POST /conversations.rename
+
+    manage_members:
+      description: Invite and remove channel members
+      routes:
+        - POST /conversations.invite
+        - POST /conversations.kick
+
+    leave_channel:
+      description: Leave channels
+      routes:
+        - POST /conversations.leave
