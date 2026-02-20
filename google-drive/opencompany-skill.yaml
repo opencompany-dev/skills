@@ -1,0 +1,79 @@
+version: 1
+
+base_url: https://www.googleapis.com
+
+secrets:
+  - name: GOOGLE_ACCESS_TOKEN
+    description: OAuth access token with Google Drive API scopes
+    required: true
+
+capabilities:
+  read:
+    list_files:
+      description: List and search files and folders
+      routes:
+        - GET /drive/v3/files
+
+    get_file:
+      description: Read file metadata
+      routes:
+        - GET /drive/v3/files/{fileId}
+
+    export_file:
+      description: Export Google Workspace docs to standard formats
+      routes:
+        - GET /drive/v3/files/{fileId}/export
+
+    list_permissions:
+      description: List current sharing permissions on a file
+      routes:
+        - GET /drive/v3/files/{fileId}/permissions
+
+    list_drives:
+      description: List shared drives the account can access
+      routes:
+        - GET /drive/v3/drives
+
+  write:
+    create_file:
+      description: Create files and folders
+      routes:
+        - POST /drive/v3/files
+        - POST /upload/drive/v3/files
+
+    update_file:
+      description: Update file metadata or content
+      routes:
+        - PATCH /drive/v3/files/{fileId}
+        - PATCH /upload/drive/v3/files/{fileId}
+
+    copy_file:
+      description: Copy files
+      routes:
+        - POST /drive/v3/files/{fileId}/copy
+
+    create_permission:
+      description: Share files with users, groups, or domains
+      routes:
+        - POST /drive/v3/files/{fileId}/permissions
+
+    update_permission:
+      description: Update sharing permissions
+      routes:
+        - PATCH /drive/v3/files/{fileId}/permissions/{permissionId}
+
+  admin:
+    delete_file:
+      description: Permanently delete files
+      routes:
+        - DELETE /drive/v3/files/{fileId}
+
+    delete_permission:
+      description: Remove file sharing permissions
+      routes:
+        - DELETE /drive/v3/files/{fileId}/permissions/{permissionId}
+
+    empty_trash:
+      description: Empty Drive trash for the account
+      routes:
+        - DELETE /drive/v3/files/trash

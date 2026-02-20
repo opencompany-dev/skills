@@ -1,0 +1,94 @@
+version: 1
+
+base_url: https://gmail.googleapis.com/gmail/v1
+
+secrets:
+  - name: GOOGLE_ACCESS_TOKEN
+    description: OAuth access token with Gmail API scopes
+    required: true
+
+capabilities:
+  read:
+    list_threads:
+      description: List inbox threads
+      routes:
+        - GET /users/{userId}/threads
+
+    get_thread:
+      description: Read a specific thread
+      routes:
+        - GET /users/{userId}/threads/{threadId}
+
+    list_messages:
+      description: List messages in a mailbox
+      routes:
+        - GET /users/{userId}/messages
+
+    get_message:
+      description: Read a specific message
+      routes:
+        - GET /users/{userId}/messages/{messageId}
+
+    list_labels:
+      description: List and inspect labels
+      routes:
+        - GET /users/{userId}/labels
+        - GET /users/{userId}/labels/{labelId}
+
+    get_profile:
+      description: Read mailbox profile details
+      routes:
+        - GET /users/{userId}/profile
+
+  write:
+    create_draft:
+      description: Create message drafts
+      routes:
+        - POST /users/{userId}/drafts
+
+    update_draft:
+      description: Update an existing draft
+      routes:
+        - PUT /users/{userId}/drafts/{draftId}
+
+    send_message:
+      description: Send new or drafted messages
+      routes:
+        - POST /users/{userId}/messages/send
+        - POST /users/{userId}/drafts/send
+
+    modify_message:
+      description: Apply labels and state changes to messages or threads
+      routes:
+        - POST /users/{userId}/messages/{messageId}/modify
+        - POST /users/{userId}/threads/{threadId}/modify
+
+    create_or_update_label:
+      description: Create or update mailbox labels
+      routes:
+        - POST /users/{userId}/labels
+        - PATCH /users/{userId}/labels/{labelId}
+
+    move_to_or_from_trash:
+      description: Move messages and threads to or from trash
+      routes:
+        - POST /users/{userId}/messages/{messageId}/trash
+        - POST /users/{userId}/messages/{messageId}/untrash
+        - POST /users/{userId}/threads/{threadId}/trash
+        - POST /users/{userId}/threads/{threadId}/untrash
+
+  admin:
+    delete_message:
+      description: Permanently delete messages
+      routes:
+        - DELETE /users/{userId}/messages/{messageId}
+
+    delete_thread:
+      description: Permanently delete entire threads
+      routes:
+        - DELETE /users/{userId}/threads/{threadId}
+
+    delete_label:
+      description: Permanently delete labels
+      routes:
+        - DELETE /users/{userId}/labels/{labelId}

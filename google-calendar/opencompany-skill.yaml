@@ -1,0 +1,73 @@
+version: 1
+
+base_url: https://www.googleapis.com/calendar/v3
+
+secrets:
+  - name: GOOGLE_ACCESS_TOKEN
+    description: OAuth access token with Google Calendar API scopes
+    required: true
+
+capabilities:
+  read:
+    list_calendars:
+      description: List available calendars
+      routes:
+        - GET /users/me/calendarList
+        - GET /users/me/calendarList/{calendarId}
+        - GET /calendars/{calendarId}
+
+    list_events:
+      description: List events in a calendar
+      routes:
+        - GET /calendars/{calendarId}/events
+
+    get_event:
+      description: Read a single event
+      routes:
+        - GET /calendars/{calendarId}/events/{eventId}
+
+    get_freebusy:
+      description: Query availability windows across calendars
+      routes:
+        - POST /freeBusy
+
+  write:
+    create_event:
+      description: Create new calendar events
+      routes:
+        - POST /calendars/{calendarId}/events
+        - POST /calendars/{calendarId}/events/quickAdd
+
+    update_event:
+      description: Update event details or attendee state
+      routes:
+        - PUT /calendars/{calendarId}/events/{eventId}
+        - PATCH /calendars/{calendarId}/events/{eventId}
+
+    move_event:
+      description: Move an event to another calendar
+      routes:
+        - POST /calendars/{calendarId}/events/{eventId}/move
+
+    manage_calendar_membership:
+      description: Add or update calendar list entries
+      routes:
+        - POST /users/me/calendarList
+        - PUT /users/me/calendarList/{calendarId}
+        - PATCH /users/me/calendarList/{calendarId}
+
+  admin:
+    delete_event:
+      description: Delete calendar events
+      routes:
+        - DELETE /calendars/{calendarId}/events/{eventId}
+
+    clear_calendar:
+      description: Delete all events from a calendar
+      routes:
+        - POST /calendars/{calendarId}/clear
+
+    delete_calendar:
+      description: Permanently delete calendars
+      routes:
+        - DELETE /calendars/{calendarId}

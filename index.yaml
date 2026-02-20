@@ -3,6 +3,15 @@ skills:
   - name: opencompany/slack
     description: Interact with Slack workspaces
     version: "1.0.0"
+  - name: opencompany/gmail
+    description: Work with Gmail inboxes, threads, drafts, and labels
+    version: "1.0.0"
+  - name: opencompany/google-calendar
+    description: Manage calendars, events, and scheduling workflows
+    version: "1.0.0"
+  - name: opencompany/google-drive
+    description: Manage Drive files, folders, sharing, and lifecycle actions
+    version: "1.0.0"
   - name: opencompany/first-principles-thinking
     description: Reason from fundamental truths instead of convention
     version: "1.0.0"
