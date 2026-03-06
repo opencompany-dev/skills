@@ -19,6 +19,11 @@
       "id": "gmail.messages.list",
       "name": "List Gmail Messages",
       "description": "List messages through gws CLI compatibility mapping.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
       "permission_action": "gws.gmail.read",
       "permission_resource": "gmail",
       "read_only": true,

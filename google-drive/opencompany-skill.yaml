@@ -19,6 +19,11 @@
       "id": "google-drive.files.list",
       "name": "List Drive Files",
       "description": "List drive files through gws CLI compatibility mapping.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
       "permission_action": "gws.drive.read",
       "permission_resource": "drive",
       "read_only": true,

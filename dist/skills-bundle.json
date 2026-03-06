@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-05T22:15:29.642569+00:00",
+  "generated_at": "2026-03-06T23:36:20.016907+00:00",
   "skills": [
     {
       "name": "opencompany/gmail",
@@ -13,6 +13,11 @@
           "id": "gmail.messages.list",
           "name": "List Gmail Messages",
           "description": "List messages through gws CLI compatibility mapping.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
           "permission_action": "gws.gmail.read",
           "permission_resource": "gmail",
           "read_only": true,
@@ -41,6 +46,18 @@
           "id": "google-calendar.events.list",
           "name": "List Calendar Events",
           "description": "List calendar events through gws CLI compatibility mapping.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "calendar_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "calendar_id"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "gws.calendar.read",
           "permission_resource": "calendar",
           "read_only": true,
@@ -71,6 +88,11 @@
           "id": "google-drive.files.list",
           "name": "List Drive Files",
           "description": "List drive files through gws CLI compatibility mapping.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
           "permission_action": "gws.drive.read",
           "permission_resource": "drive",
           "read_only": true,
@@ -99,6 +121,11 @@
           "id": "gws.gmail.messages.list",
           "name": "List Gmail Messages",
           "description": "List Gmail messages with gws CLI.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
           "permission_action": "gws.gmail.read",
           "permission_resource": "gmail",
           "read_only": true,
@@ -118,6 +145,18 @@
           "id": "gws.gmail.message.get",
           "name": "Get Gmail Message",
           "description": "Read a single Gmail message with gws CLI.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "message_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message_id"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "gws.gmail.read",
           "permission_resource": "gmail",
           "read_only": true,
@@ -138,6 +177,18 @@
           "id": "gws.calendar.events.list",
           "name": "List Calendar Events",
           "description": "List events from a calendar with gws CLI.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "calendar_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "calendar_id"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "gws.calendar.read",
           "permission_resource": "calendar",
           "read_only": true,
@@ -159,6 +210,11 @@
           "id": "gws.drive.files.list",
           "name": "List Drive Files",
           "description": "List files in Google Drive with gws CLI.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
           "permission_action": "gws.drive.read",
           "permission_resource": "drive",
           "read_only": true,
@@ -187,6 +243,18 @@
           "id": "linear.issues.list",
           "name": "List Linear Issues",
           "description": "List issues from Linear.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "integer"
+              },
+              "query": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "linear.issues.read",
           "permission_resource": "issues",
           "read_only": true,
@@ -201,6 +269,15 @@
           "id": "linear.projects.list",
           "name": "List Linear Projects",
           "description": "List projects from Linear.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "linear.projects.read",
           "permission_resource": "projects",
           "read_only": true,
@@ -215,6 +292,15 @@
           "id": "linear.teams.list",
           "name": "List Linear Teams",
           "description": "List teams from Linear.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "linear.teams.read",
           "permission_resource": "teams",
           "read_only": true,
@@ -229,6 +315,15 @@
           "id": "linear.cycles.list",
           "name": "List Linear Cycles",
           "description": "List cycles from Linear.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "linear.cycles.read",
           "permission_resource": "cycles",
           "read_only": true,
@@ -243,6 +338,21 @@
           "id": "linear.comments.list",
           "name": "List Linear Comments",
           "description": "List comments for an issue.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "issueId": {
+                "type": "string"
+              },
+              "first": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "issueId"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "linear.comments.read",
           "permission_resource": "comments",
           "read_only": true,
@@ -266,6 +376,21 @@
           "id": "slack.channels.list",
           "name": "List Slack Channels",
           "description": "List channels in the connected Slack workspace.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer"
+              },
+              "cursor": {
+                "type": "string"
+              },
+              "exclude_archived": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "slack.channels.read",
           "permission_resource": "channels",
           "read_only": true,
@@ -281,6 +406,30 @@
           "id": "slack.channels.history",
           "name": "Read Slack Channel History",
           "description": "Read channel messages.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "cursor": {
+                "type": "string"
+              },
+              "oldest": {
+                "type": "string"
+              },
+              "latest": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "channel"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "slack.messages.read",
           "permission_resource": "messages",
           "read_only": true,
@@ -296,6 +445,28 @@
           "id": "slack.thread.replies",
           "name": "Read Slack Thread Replies",
           "description": "Read replies in a thread.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string"
+              },
+              "ts": {
+                "type": "string"
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "cursor": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "channel",
+              "ts"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "slack.messages.read",
           "permission_resource": "messages",
           "read_only": true,
@@ -311,6 +482,18 @@
           "id": "slack.users.list",
           "name": "List Slack Users",
           "description": "List workspace users.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer"
+              },
+              "cursor": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
           "permission_action": "slack.users.read",
           "permission_resource": "users",
           "read_only": true,
@@ -326,6 +509,24 @@
           "id": "slack.search.messages",
           "name": "Search Slack Messages",
           "description": "Search messages in workspace.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer"
+              },
+              "page": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          },
           "permission_action": "slack.search.read",
           "permission_resource": "messages",
           "read_only": true,

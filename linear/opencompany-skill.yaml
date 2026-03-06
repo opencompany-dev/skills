@@ -19,6 +19,14 @@
       "id": "linear.issues.list",
       "name": "List Linear Issues",
       "description": "List issues from Linear.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "first": { "type": "integer" },
+          "query": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "linear.issues.read",
       "permission_resource": "issues",
       "read_only": true,
@@ -31,6 +39,13 @@
       "id": "linear.projects.list",
       "name": "List Linear Projects",
       "description": "List projects from Linear.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "first": { "type": "integer" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "linear.projects.read",
       "permission_resource": "projects",
       "read_only": true,
@@ -43,6 +58,13 @@
       "id": "linear.teams.list",
       "name": "List Linear Teams",
       "description": "List teams from Linear.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "first": { "type": "integer" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "linear.teams.read",
       "permission_resource": "teams",
       "read_only": true,
@@ -55,6 +77,13 @@
       "id": "linear.cycles.list",
       "name": "List Linear Cycles",
       "description": "List cycles from Linear.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "first": { "type": "integer" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "linear.cycles.read",
       "permission_resource": "cycles",
       "read_only": true,
@@ -67,6 +96,15 @@
       "id": "linear.comments.list",
       "name": "List Linear Comments",
       "description": "List comments for an issue.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "issueId": { "type": "string" },
+          "first": { "type": "integer" }
+        },
+        "required": ["issueId"],
+        "additionalProperties": false
+      },
       "permission_action": "linear.comments.read",
       "permission_resource": "comments",
       "read_only": true,

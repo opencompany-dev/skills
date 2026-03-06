@@ -19,6 +19,15 @@
       "id": "slack.channels.list",
       "name": "List Slack Channels",
       "description": "List channels in the connected Slack workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" },
+          "exclude_archived": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "slack.channels.read",
       "permission_resource": "channels",
       "read_only": true,
@@ -32,6 +41,18 @@
       "id": "slack.channels.history",
       "name": "Read Slack Channel History",
       "description": "Read channel messages.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": { "type": "string" },
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" },
+          "oldest": { "type": "string" },
+          "latest": { "type": "string" }
+        },
+        "required": ["channel"],
+        "additionalProperties": false
+      },
       "permission_action": "slack.messages.read",
       "permission_resource": "messages",
       "read_only": true,
@@ -45,6 +66,17 @@
       "id": "slack.thread.replies",
       "name": "Read Slack Thread Replies",
       "description": "Read replies in a thread.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": { "type": "string" },
+          "ts": { "type": "string" },
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" }
+        },
+        "required": ["channel", "ts"],
+        "additionalProperties": false
+      },
       "permission_action": "slack.messages.read",
       "permission_resource": "messages",
       "read_only": true,
@@ -58,6 +90,14 @@
       "id": "slack.users.list",
       "name": "List Slack Users",
       "description": "List workspace users.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
       "permission_action": "slack.users.read",
       "permission_resource": "users",
       "read_only": true,
@@ -71,6 +111,16 @@
       "id": "slack.search.messages",
       "name": "Search Slack Messages",
       "description": "Search messages in workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "count": { "type": "integer" },
+          "page": { "type": "integer" }
+        },
+        "required": ["query"],
+        "additionalProperties": false
+      },
       "permission_action": "slack.search.read",
       "permission_resource": "messages",
       "read_only": true,

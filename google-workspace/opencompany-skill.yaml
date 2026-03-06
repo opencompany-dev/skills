@@ -19,6 +19,11 @@
       "id": "gws.gmail.messages.list",
       "name": "List Gmail Messages",
       "description": "List Gmail messages with gws CLI.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
       "permission_action": "gws.gmail.read",
       "permission_resource": "gmail",
       "read_only": true,
@@ -31,6 +36,14 @@
       "id": "gws.gmail.message.get",
       "name": "Get Gmail Message",
       "description": "Read a single Gmail message with gws CLI.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": { "type": "string" }
+        },
+        "required": ["message_id"],
+        "additionalProperties": false
+      },
       "permission_action": "gws.gmail.read",
       "permission_resource": "gmail",
       "read_only": true,
@@ -43,6 +56,14 @@
       "id": "gws.calendar.events.list",
       "name": "List Calendar Events",
       "description": "List events from a calendar with gws CLI.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "calendar_id": { "type": "string" }
+        },
+        "required": ["calendar_id"],
+        "additionalProperties": false
+      },
       "permission_action": "gws.calendar.read",
       "permission_resource": "calendar",
       "read_only": true,
@@ -55,6 +76,11 @@
       "id": "gws.drive.files.list",
       "name": "List Drive Files",
       "description": "List files in Google Drive with gws CLI.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
       "permission_action": "gws.drive.read",
       "permission_resource": "drive",
       "read_only": true,
