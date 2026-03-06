@@ -19,6 +19,14 @@
       "id": "google-calendar.events.list",
       "name": "List Calendar Events",
       "description": "List calendar events through gws CLI compatibility mapping.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "calendar_id": { "type": "string" }
+        },
+        "required": ["calendar_id"],
+        "additionalProperties": false
+      },
       "permission_action": "gws.calendar.read",
       "permission_resource": "calendar",
       "read_only": true,
