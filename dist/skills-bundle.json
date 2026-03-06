@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "generated_at": "2026-03-05T22:15:29.642569+00:00",
+  "skills": [
+    {
+      "name": "opencompany/gmail",
+      "description": "Compatibility Gmail read actions mapped to Google Workspace CLI backend.",
+      "integration": "gmail",
+      "provider": "gws",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "gmail.messages.list",
+          "name": "List Gmail Messages",
+          "description": "List messages through gws CLI compatibility mapping.",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "gmail",
+              "messages",
+              "list",
+              "--json"
+            ]
+          },
+          "integration": "gmail",
+          "provider": "gws"
+        }
+      ]
+    },
+    {
+      "name": "opencompany/google-calendar",
+      "description": "Compatibility Google Calendar read actions mapped to Google Workspace CLI backend.",
+      "integration": "google-calendar",
+      "provider": "gws",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "google-calendar.events.list",
+          "name": "List Calendar Events",
+          "description": "List calendar events through gws CLI compatibility mapping.",
+          "permission_action": "gws.calendar.read",
+          "permission_resource": "calendar",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "calendar",
+              "events",
+              "list",
+              "--calendar",
+              "{{calendar_id}}",
+              "--json"
+            ]
+          },
+          "integration": "google-calendar",
+          "provider": "gws"
+        }
+      ]
+    },
+    {
+      "name": "opencompany/google-drive",
+      "description": "Compatibility Google Drive read actions mapped to Google Workspace CLI backend.",
+      "integration": "google-drive",
+      "provider": "gws",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "google-drive.files.list",
+          "name": "List Drive Files",
+          "description": "List drive files through gws CLI compatibility mapping.",
+          "permission_action": "gws.drive.read",
+          "permission_resource": "drive",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "drive",
+              "files",
+              "list",
+              "--json"
+            ]
+          },
+          "integration": "google-drive",
+          "provider": "gws"
+        }
+      ]
+    },
+    {
+      "name": "opencompany/google-workspace",
+      "description": "Read Google Workspace data through gws CLI in Platform Gateway.",
+      "integration": "google-workspace",
+      "provider": "gws",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "gws.gmail.messages.list",
+          "name": "List Gmail Messages",
+          "description": "List Gmail messages with gws CLI.",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "gmail",
+              "messages",
+              "list",
+              "--json"
+            ]
+          },
+          "integration": "google-workspace",
+          "provider": "gws"
+        },
+        {
+          "id": "gws.gmail.message.get",
+          "name": "Get Gmail Message",
+          "description": "Read a single Gmail message with gws CLI.",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "gmail",
+              "messages",
+              "get",
+              "{{message_id}}",
+              "--json"
+            ]
+          },
+          "integration": "google-workspace",
+          "provider": "gws"
+        },
+        {
+          "id": "gws.calendar.events.list",
+          "name": "List Calendar Events",
+          "description": "List events from a calendar with gws CLI.",
+          "permission_action": "gws.calendar.read",
+          "permission_resource": "calendar",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "calendar",
+              "events",
+              "list",
+              "--calendar",
+              "{{calendar_id}}",
+              "--json"
+            ]
+          },
+          "integration": "google-workspace",
+          "provider": "gws"
+        },
+        {
+          "id": "gws.drive.files.list",
+          "name": "List Drive Files",
+          "description": "List files in Google Drive with gws CLI.",
+          "permission_action": "gws.drive.read",
+          "permission_resource": "drive",
+          "read_only": true,
+          "runner": {
+            "type": "gws_cli",
+            "command": [
+              "drive",
+              "files",
+              "list",
+              "--json"
+            ]
+          },
+          "integration": "google-workspace",
+          "provider": "gws"
+        }
+      ]
+    },
+    {
+      "name": "opencompany/linear",
+      "description": "Read Linear workspace data through Platform Gateway.",
+      "integration": "linear",
+      "provider": "linear",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "linear.issues.list",
+          "name": "List Linear Issues",
+          "description": "List issues from Linear.",
+          "permission_action": "linear.issues.read",
+          "permission_resource": "issues",
+          "read_only": true,
+          "runner": {
+            "type": "linear_graphql",
+            "query": "query Issues($first: Int, $query: String) { issues(first: $first, filter: { title: { containsIgnoreCase: $query } }) { nodes { id identifier title priority createdAt updatedAt state { name } } } }"
+          },
+          "integration": "linear",
+          "provider": "linear"
+        },
+        {
+          "id": "linear.projects.list",
+          "name": "List Linear Projects",
+          "description": "List projects from Linear.",
+          "permission_action": "linear.projects.read",
+          "permission_resource": "projects",
+          "read_only": true,
+          "runner": {
+            "type": "linear_graphql",
+            "query": "query Projects($first: Int) { projects(first: $first) { nodes { id name description state { name } } } }"
+          },
+          "integration": "linear",
+          "provider": "linear"
+        },
+        {
+          "id": "linear.teams.list",
+          "name": "List Linear Teams",
+          "description": "List teams from Linear.",
+          "permission_action": "linear.teams.read",
+          "permission_resource": "teams",
+          "read_only": true,
+          "runner": {
+            "type": "linear_graphql",
+            "query": "query Teams($first: Int) { teams(first: $first) { nodes { id key name description } } }"
+          },
+          "integration": "linear",
+          "provider": "linear"
+        },
+        {
+          "id": "linear.cycles.list",
+          "name": "List Linear Cycles",
+          "description": "List cycles from Linear.",
+          "permission_action": "linear.cycles.read",
+          "permission_resource": "cycles",
+          "read_only": true,
+          "runner": {
+            "type": "linear_graphql",
+            "query": "query Cycles($first: Int) { cycles(first: $first) { nodes { id number name startsAt endsAt } } }"
+          },
+          "integration": "linear",
+          "provider": "linear"
+        },
+        {
+          "id": "linear.comments.list",
+          "name": "List Linear Comments",
+          "description": "List comments for an issue.",
+          "permission_action": "linear.comments.read",
+          "permission_resource": "comments",
+          "read_only": true,
+          "runner": {
+            "type": "linear_graphql",
+            "query": "query Comments($issueId: String!, $first: Int) { comments(first: $first, filter: { issue: { id: { eq: $issueId } } }) { nodes { id body createdAt updatedAt user { id name } } } }"
+          },
+          "integration": "linear",
+          "provider": "linear"
+        }
+      ]
+    },
+    {
+      "name": "opencompany/slack",
+      "description": "Read Slack workspace data through Platform Gateway.",
+      "integration": "slack",
+      "provider": "slack",
+      "read_only": true,
+      "actions": [
+        {
+          "id": "slack.channels.list",
+          "name": "List Slack Channels",
+          "description": "List channels in the connected Slack workspace.",
+          "permission_action": "slack.channels.read",
+          "permission_resource": "channels",
+          "read_only": true,
+          "runner": {
+            "type": "slack_api",
+            "method": "GET",
+            "path": "/conversations.list"
+          },
+          "integration": "slack",
+          "provider": "slack"
+        },
+        {
+          "id": "slack.channels.history",
+          "name": "Read Slack Channel History",
+          "description": "Read channel messages.",
+          "permission_action": "slack.messages.read",
+          "permission_resource": "messages",
+          "read_only": true,
+          "runner": {
+            "type": "slack_api",
+            "method": "GET",
+            "path": "/conversations.history"
+          },
+          "integration": "slack",
+          "provider": "slack"
+        },
+        {
+          "id": "slack.thread.replies",
+          "name": "Read Slack Thread Replies",
+          "description": "Read replies in a thread.",
+          "permission_action": "slack.messages.read",
+          "permission_resource": "messages",
+          "read_only": true,
+          "runner": {
+            "type": "slack_api",
+            "method": "GET",
+            "path": "/conversations.replies"
+          },
+          "integration": "slack",
+          "provider": "slack"
+        },
+        {
+          "id": "slack.users.list",
+          "name": "List Slack Users",
+          "description": "List workspace users.",
+          "permission_action": "slack.users.read",
+          "permission_resource": "users",
+          "read_only": true,
+          "runner": {
+            "type": "slack_api",
+            "method": "GET",
+            "path": "/users.list"
+          },
+          "integration": "slack",
+          "provider": "slack"
+        },
+        {
+          "id": "slack.search.messages",
+          "name": "Search Slack Messages",
+          "description": "Search messages in workspace.",
+          "permission_action": "slack.search.read",
+          "permission_resource": "messages",
+          "read_only": true,
+          "runner": {
+            "type": "slack_api",
+            "method": "GET",
+            "path": "/search.messages"
+          },
+          "integration": "slack",
+          "provider": "slack"
+        }
+      ]
+    }
+  ]
+}
