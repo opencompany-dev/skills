@@ -1,17 +1,27 @@
-version: 1
+version: 2
+manifest_version: 2
+policy:
+  read_only_integrations: true
+  bundle_output: dist/skills-bundle.json
 skills:
+  - name: opencompany/linear
+    description: Read Linear issues, projects, teams, cycles, and comments
+    version: "2.0.0"
   - name: opencompany/slack
-    description: Interact with Slack workspaces
-    version: "1.0.0"
+    description: Read Slack channels, users, history, and search
+    version: "2.0.0"
+  - name: opencompany/google-workspace
+    description: Read Gmail, Calendar, and Drive through gws CLI
+    version: "2.0.0"
   - name: opencompany/gmail
-    description: Work with Gmail inboxes, threads, drafts, and labels
-    version: "1.0.0"
+    description: Compatibility Gmail read alias mapped to gws backend
+    version: "2.0.0"
   - name: opencompany/google-calendar
-    description: Manage calendars, events, and scheduling workflows
-    version: "1.0.0"
+    description: Compatibility Calendar read alias mapped to gws backend
+    version: "2.0.0"
   - name: opencompany/google-drive
-    description: Manage Drive files, folders, sharing, and lifecycle actions
-    version: "1.0.0"
+    description: Compatibility Drive read alias mapped to gws backend
+    version: "2.0.0"
   - name: opencompany/first-principles-thinking
     description: Reason from fundamental truths instead of convention
     version: "1.0.0"

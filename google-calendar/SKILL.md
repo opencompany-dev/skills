@@ -1,21 +1,17 @@
 ---
 name: google-calendar
-description: Manage Google Calendar schedules — read availability, create/update events, and coordinate meeting logistics. Use when the user asks for scheduling help, calendar planning, or meeting coordination.
+description: Read Google Calendar events via Google Workspace CLI through Platform Gateway.
 ---
 
-# Google Calendar
+# Google Calendar (Compatibility Read-Only)
 
-Use Google Calendar to plan and coordinate schedules.
+Compatibility alias for Google Workspace read actions.
 
 ## Capabilities
 
-- List calendars and events
-- Read event details and free/busy availability
-- Create, update, and move events
-- Delete events/calendars when granted admin permissions
+- List events (read-only)
 
 ## Notes
 
-- Use `primary` as a default calendar when no calendar is specified.
-- Preserve existing event attendees and conferencing details unless asked to change them.
-- Confirm destructive actions (event/calendar deletes) before executing.
+- Routed to provider `gws`.
+- Write/admin operations are intentionally unavailable.

@@ -1,22 +1,22 @@
 ---
 name: slack
-description: Interact with Slack workspaces — send messages, read channels, and manage reactions. Use when the user asks to communicate via Slack or check Slack messages.
+description: Read Slack channels, threads, users, and message search through Platform Gateway read-only actions.
 ---
 
-# Slack
+# Slack (Read-Only)
 
-Interact with Slack workspaces.
+Inspect Slack workspace data.
 
 ## Capabilities
 
-- List and read channels
-- Send messages and reactions
-- Read message history
-- Upload and manage files
-- Manage channel membership
+- List channels
+- Read channel history
+- Read thread replies
+- List users
+- Search messages
 
 ## Notes
 
-- Messages are sent as the bot user
-- Use channel IDs, not names, for reliability
-- The bot must be invited to private channels before it can access them
+- All requests run through Platform Gateway.
+- Write operations are intentionally unavailable.
+- Use channel IDs for deterministic reads.

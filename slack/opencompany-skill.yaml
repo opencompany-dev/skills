@@ -1,110 +1,134 @@
-version: 1
-
-base_url: https://slack.com/api
-
-secrets:
-  - name: SLACK_BOT_TOKEN
-    description: Slack Bot User OAuth Token
-    required: true
-
-capabilities:
-  read:
-    read_messages:
-      description: Read channel messages and conversation history
-      routes:
-        - GET /conversations.history
-        - GET /conversations.replies
-
-    list_channels:
-      description: List public and private channels in the workspace
-      routes:
-        - GET /conversations.list
-        - GET /conversations.info
-
-    list_users:
-      description: List and look up users in the workspace
-      routes:
-        - GET /users.list
-        - GET /users.info
-        - GET /users.lookupByEmail
-
-    search_messages:
-      description: Search messages in the workspace
-      routes:
-        - GET /search.messages
-        - GET /search.all
-
-    read_files:
-      description: List and read file information
-      routes:
-        - GET /files.list
-        - GET /files.info
-
-  write:
-    send_message:
-      description: Send messages to channels and threads
-      routes:
-        - POST /chat.postMessage
-        - POST /chat.postEphemeral
-
-    update_message:
-      description: Update existing messages
-      routes:
-        - POST /chat.update
-
-    add_reaction:
-      description: Add emoji reactions to messages
-      routes:
-        - POST /reactions.add
-
-    upload_files:
-      description: Upload files to channels
-      routes:
-        - POST /files.upload
-        - POST /files.uploadV2
-
-    set_topic:
-      description: Set channel topic and purpose
-      routes:
-        - POST /conversations.setTopic
-        - POST /conversations.setPurpose
-
-    join_channel:
-      description: Join public channels
-      routes:
-        - POST /conversations.join
-
-  admin:
-    delete_message:
-      description: Delete messages
-      routes:
-        - POST /chat.delete
-
-    remove_reaction:
-      description: Remove emoji reactions from messages
-      routes:
-        - POST /reactions.remove
-
-    delete_files:
-      description: Delete files
-      routes:
-        - POST /files.delete
-
-    manage_channels:
-      description: Create, archive, and rename channels
-      routes:
-        - POST /conversations.create
-        - POST /conversations.archive
-        - POST /conversations.unarchive
-        - POST /conversations.rename
-
-    manage_members:
-      description: Invite and remove channel members
-      routes:
-        - POST /conversations.invite
-        - POST /conversations.kick
-
-    leave_channel:
-      description: Leave channels
-      routes:
-        - POST /conversations.leave
+{
+  "version": 2,
+  "name": "opencompany/slack",
+  "description": "Read Slack workspace data through Platform Gateway.",
+  "integration": "slack",
+  "provider": "slack",
+  "read_only": true,
+  "auth": {
+    "secrets": [
+      {
+        "name": "SLACK_BOT_TOKEN",
+        "required": true,
+        "description": "Slack bot token."
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "slack.channels.list",
+      "name": "List Slack Channels",
+      "description": "List channels in the connected Slack workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" },
+          "exclude_archived": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      },
+      "permission_action": "slack.channels.read",
+      "permission_resource": "channels",
+      "read_only": true,
+      "runner": {
+        "type": "slack_api",
+        "method": "GET",
+        "path": "/conversations.list"
+      }
+    },
+    {
+      "id": "slack.channels.history",
+      "name": "Read Slack Channel History",
+      "description": "Read channel messages.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": { "type": "string" },
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" },
+          "oldest": { "type": "string" },
+          "latest": { "type": "string" }
+        },
+        "required": ["channel"],
+        "additionalProperties": false
+      },
+      "permission_action": "slack.messages.read",
+      "permission_resource": "messages",
+      "read_only": true,
+      "runner": {
+        "type": "slack_api",
+        "method": "GET",
+        "path": "/conversations.history"
+      }
+    },
+    {
+      "id": "slack.thread.replies",
+      "name": "Read Slack Thread Replies",
+      "description": "Read replies in a thread.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": { "type": "string" },
+          "ts": { "type": "string" },
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" }
+        },
+        "required": ["channel", "ts"],
+        "additionalProperties": false
+      },
+      "permission_action": "slack.messages.read",
+      "permission_resource": "messages",
+      "read_only": true,
+      "runner": {
+        "type": "slack_api",
+        "method": "GET",
+        "path": "/conversations.replies"
+      }
+    },
+    {
+      "id": "slack.users.list",
+      "name": "List Slack Users",
+      "description": "List workspace users.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "limit": { "type": "integer" },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "permission_action": "slack.users.read",
+      "permission_resource": "users",
+      "read_only": true,
+      "runner": {
+        "type": "slack_api",
+        "method": "GET",
+        "path": "/users.list"
+      }
+    },
+    {
+      "id": "slack.search.messages",
+      "name": "Search Slack Messages",
+      "description": "Search messages in workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "count": { "type": "integer" },
+          "page": { "type": "integer" }
+        },
+        "required": ["query"],
+        "additionalProperties": false
+      },
+      "permission_action": "slack.search.read",
+      "permission_resource": "messages",
+      "read_only": true,
+      "runner": {
+        "type": "slack_api",
+        "method": "GET",
+        "path": "/search.messages"
+      }
+    }
+  ]
+}

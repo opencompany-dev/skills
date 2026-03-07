@@ -1,21 +1,17 @@
 ---
 name: google-drive
-description: Manage Google Drive files and folders — search, read metadata/content, create/update documents, and manage sharing. Use when the user asks for file organization, document access, or sharing workflows in Drive.
+description: Read Google Drive files via Google Workspace CLI through Platform Gateway.
 ---
 
-# Google Drive
+# Google Drive (Compatibility Read-Only)
 
-Use Google Drive for file retrieval, organization, and sharing.
+Compatibility alias for Google Workspace read actions.
 
 ## Capabilities
 
-- List/search files and folders
-- Read file metadata and exported content
-- Create/update/copy files and permissions
-- Delete files or permissions when granted admin permissions
+- List files (read-only)
 
 ## Notes
 
-- Use query filters to avoid scanning full drives unnecessarily.
-- Prefer updating existing documents over creating duplicates unless asked otherwise.
-- Confirm destructive actions (file deletes, trash emptying) with the user when possible.
+- Routed to provider `gws`.
+- Write/admin operations are intentionally unavailable.
