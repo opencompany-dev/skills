@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "generated_at": "2026-03-07T08:26:48.618341+00:00",
+  "skills": [
+    {
+      "id": "opencompany/linear",
+      "name": "linear",
+      "version": "2.0.0",
+      "description": "Read Linear issues, projects, teams, cycles, and comments",
+      "prompt_markdown": "---\nname: linear\ndescription: Read Linear issues, teams, projects, cycles, and comments through Platform Gateway read-only actions.\n---\n\n# Linear (Read-Only)\n\nUse this skill when the user needs to inspect data in Linear.\n\n## Available actions\n\n- List issues\n- List projects\n- List teams\n- List cycles\n- List comments for an issue\n\n## Constraints\n\n- Read-only actions only.\n- Requests are executed through Platform Gateway.\n- Credential tokens are never returned in action output.\n",
+      "actions": [
+        {
+          "id": "linear.issues.list",
+          "name": "List Linear Issues",
+          "description": "List issues from Linear.",
+          "integration": "linear",
+          "provider": "linear",
+          "permission_action": "linear.issues.read",
+          "permission_resource": "issues",
+          "read_only": true
+        },
+        {
+          "id": "linear.projects.list",
+          "name": "List Linear Projects",
+          "description": "List projects from Linear.",
+          "integration": "linear",
+          "provider": "linear",
+          "permission_action": "linear.projects.read",
+          "permission_resource": "projects",
+          "read_only": true
+        },
+        {
+          "id": "linear.teams.list",
+          "name": "List Linear Teams",
+          "description": "List teams from Linear.",
+          "integration": "linear",
+          "provider": "linear",
+          "permission_action": "linear.teams.read",
+          "permission_resource": "teams",
+          "read_only": true
+        },
+        {
+          "id": "linear.cycles.list",
+          "name": "List Linear Cycles",
+          "description": "List cycles from Linear.",
+          "integration": "linear",
+          "provider": "linear",
+          "permission_action": "linear.cycles.read",
+          "permission_resource": "cycles",
+          "read_only": true
+        },
+        {
+          "id": "linear.comments.list",
+          "name": "List Linear Comments",
+          "description": "List comments for an issue.",
+          "integration": "linear",
+          "provider": "linear",
+          "permission_action": "linear.comments.read",
+          "permission_resource": "comments",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/slack",
+      "name": "slack",
+      "version": "2.0.0",
+      "description": "Read Slack channels, users, history, and search",
+      "prompt_markdown": "---\nname: slack\ndescription: Read Slack channels, threads, users, and message search through Platform Gateway read-only actions.\n---\n\n# Slack (Read-Only)\n\nInspect Slack workspace data.\n\n## Capabilities\n\n- List channels\n- Read channel history\n- Read thread replies\n- List users\n- Search messages\n\n## Notes\n\n- All requests run through Platform Gateway.\n- Write operations are intentionally unavailable.\n- Use channel IDs for deterministic reads.\n",
+      "actions": [
+        {
+          "id": "slack.channels.list",
+          "name": "List Slack Channels",
+          "description": "List channels in the connected Slack workspace.",
+          "integration": "slack",
+          "provider": "slack",
+          "permission_action": "slack.channels.read",
+          "permission_resource": "channels",
+          "read_only": true
+        },
+        {
+          "id": "slack.channels.history",
+          "name": "Read Slack Channel History",
+          "description": "Read channel messages.",
+          "integration": "slack",
+          "provider": "slack",
+          "permission_action": "slack.messages.read",
+          "permission_resource": "messages",
+          "read_only": true
+        },
+        {
+          "id": "slack.thread.replies",
+          "name": "Read Slack Thread Replies",
+          "description": "Read replies in a thread.",
+          "integration": "slack",
+          "provider": "slack",
+          "permission_action": "slack.messages.read",
+          "permission_resource": "messages",
+          "read_only": true
+        },
+        {
+          "id": "slack.users.list",
+          "name": "List Slack Users",
+          "description": "List workspace users.",
+          "integration": "slack",
+          "provider": "slack",
+          "permission_action": "slack.users.read",
+          "permission_resource": "users",
+          "read_only": true
+        },
+        {
+          "id": "slack.search.messages",
+          "name": "Search Slack Messages",
+          "description": "Search messages in workspace.",
+          "integration": "slack",
+          "provider": "slack",
+          "permission_action": "slack.search.read",
+          "permission_resource": "messages",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/google-workspace",
+      "name": "google-workspace",
+      "version": "2.0.0",
+      "description": "Read Gmail, Calendar, and Drive through gws CLI",
+      "prompt_markdown": "---\nname: google-workspace\ndescription: Read Google Workspace data (Gmail, Calendar, Drive) via the Google Workspace CLI through Platform Gateway.\n---\n\n# Google Workspace (Read-Only)\n\nThis skill uses the Google Workspace CLI backend for read operations.\n\n## Required setup\n\n- Install CLI:\n  - `npm i -g @googleworkspace/cli`\n- Optional skills install reference:\n  - `npx skills add github:googleworkspace/cli`\n\n## Available actions\n\n- Gmail: list/get messages\n- Calendar: list events\n- Drive: list files\n\n## Constraints\n\n- Read-only actions only.\n- Gateway allowlist blocks write verbs at runtime.\n",
+      "actions": [
+        {
+          "id": "gws.gmail.messages.list",
+          "name": "List Gmail Messages",
+          "description": "List Gmail messages with gws CLI.",
+          "integration": "google-workspace",
+          "provider": "gws",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true
+        },
+        {
+          "id": "gws.gmail.message.get",
+          "name": "Get Gmail Message",
+          "description": "Read a single Gmail message with gws CLI.",
+          "integration": "google-workspace",
+          "provider": "gws",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true
+        },
+        {
+          "id": "gws.calendar.events.list",
+          "name": "List Calendar Events",
+          "description": "List events from a calendar with gws CLI.",
+          "integration": "google-workspace",
+          "provider": "gws",
+          "permission_action": "gws.calendar.read",
+          "permission_resource": "calendar",
+          "read_only": true
+        },
+        {
+          "id": "gws.drive.files.list",
+          "name": "List Drive Files",
+          "description": "List files in Google Drive with gws CLI.",
+          "integration": "google-workspace",
+          "provider": "gws",
+          "permission_action": "gws.drive.read",
+          "permission_resource": "drive",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/gmail",
+      "name": "gmail",
+      "version": "2.0.0",
+      "description": "Compatibility Gmail read alias mapped to gws backend",
+      "prompt_markdown": "---\nname: gmail\ndescription: Read Gmail data using the Google Workspace CLI backend through Platform Gateway.\n---\n\n# Gmail (Compatibility Read-Only)\n\nCompatibility alias for Google Workspace read actions.\n\n## Capabilities\n\n- List messages via Google Workspace CLI\n\n## Notes\n\n- Routed to provider `gws`.\n- Write/admin operations are intentionally unavailable.\n",
+      "actions": [
+        {
+          "id": "gmail.messages.list",
+          "name": "List Gmail Messages",
+          "description": "List messages through gws CLI compatibility mapping.",
+          "integration": "gmail",
+          "provider": "gws",
+          "permission_action": "gws.gmail.read",
+          "permission_resource": "gmail",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/google-calendar",
+      "name": "google-calendar",
+      "version": "2.0.0",
+      "description": "Compatibility Calendar read alias mapped to gws backend",
+      "prompt_markdown": "---\nname: google-calendar\ndescription: Read Google Calendar events via Google Workspace CLI through Platform Gateway.\n---\n\n# Google Calendar (Compatibility Read-Only)\n\nCompatibility alias for Google Workspace read actions.\n\n## Capabilities\n\n- List events (read-only)\n\n## Notes\n\n- Routed to provider `gws`.\n- Write/admin operations are intentionally unavailable.\n",
+      "actions": [
+        {
+          "id": "google-calendar.events.list",
+          "name": "List Calendar Events",
+          "description": "List calendar events through gws CLI compatibility mapping.",
+          "integration": "google-calendar",
+          "provider": "gws",
+          "permission_action": "gws.calendar.read",
+          "permission_resource": "calendar",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/google-drive",
+      "name": "google-drive",
+      "version": "2.0.0",
+      "description": "Compatibility Drive read alias mapped to gws backend",
+      "prompt_markdown": "---\nname: google-drive\ndescription: Read Google Drive files via Google Workspace CLI through Platform Gateway.\n---\n\n# Google Drive (Compatibility Read-Only)\n\nCompatibility alias for Google Workspace read actions.\n\n## Capabilities\n\n- List files (read-only)\n\n## Notes\n\n- Routed to provider `gws`.\n- Write/admin operations are intentionally unavailable.\n",
+      "actions": [
+        {
+          "id": "google-drive.files.list",
+          "name": "List Drive Files",
+          "description": "List drive files through gws CLI compatibility mapping.",
+          "integration": "google-drive",
+          "provider": "gws",
+          "permission_action": "gws.drive.read",
+          "permission_resource": "drive",
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "id": "opencompany/first-principles-thinking",
+      "name": "first-principles-thinking",
+      "version": "1.0.0",
+      "description": "Reason from fundamental truths instead of convention",
+      "prompt_markdown": "---\nname: first-principles-thinking\ndescription: Reason from fundamental truths instead of convention. Use automatically when solving problems, making decisions, or evaluating approaches.\n---\n\n# First Principles Thinking\n\nReason from fundamental truths, not patterns or conventions. Break problems down to their atomic components and rebuild understanding from there.\n\n## When to Apply\n\nUse first-principles thinking when:\n- Evaluating a solution or approach\n- Making architectural or product decisions\n- Debugging complex problems\n- The \"obvious\" answer feels unsatisfying\n- Conventions conflict with the specific context\n\n## Core Method\n\n**1. Identify assumptions**\nList everything being taken for granted. What are we assuming must be true?\n\n**2. Question each assumption**\nAsk \"why?\" until you hit bedrock \u2014 facts that cannot be reduced further. If an assumption rests on convention (\"that's how it's done\"), it's not bedrock.\n\n**3. Decompose to fundamentals**\nWhat are the irreducible components? What do we know is definitively true?\n\n**4. Rebuild from atoms**\nConstruct the solution using only verified fundamentals. Let the answer emerge from what must be true, not what's familiar.\n\n## Anti-Patterns\n\nNever default to these without explicit justification:\n- \"Best practice\" \u2014 why is it best for *this* context?\n- \"Usually we do X\" \u2014 why is this situation usual?\n- \"The standard approach\" \u2014 who set the standard and under what constraints?\n- \"Industry convention\" \u2014 conventions optimize for average cases, not your case\n\nIf using a convention, state *why* it applies here specifically.\n\n## Output Format\n\n**For complex decisions:** TL;DR first, then structured breakdown:\n```\n**TL;DR:** [One-line answer]\n\n**Assumptions challenged:**\n- [Assumption] \u2192 [Why it doesn't hold / does hold]\n\n**Fundamentals:**\n- [Irreducible truth 1]\n- [Irreducible truth 2]\n\n**Therefore:** [Reasoned conclusion]\n```\n\n**For simpler problems:** Internalize the reasoning; just deliver a better answer.\n\n## Examples\n\n### Example 1: \"Should we use microservices?\"\n\n**Conventional thinking:** \"Microservices are best practice for scaling.\"\n\n**First principles:**\n\n**TL;DR:** Probably not \u2014 your constraints don't match microservices' assumptions.\n\n**Assumptions challenged:**\n- \"We need to scale independently\" \u2192 Do we? What's our actual load pattern?\n- \"Teams need autonomy\" \u2192 We have 4 engineers. Coordination cost is low.\n- \"It's industry standard\" \u2192 Standard for companies with different constraints.\n\n**Fundamentals:**\n- Network calls are slower and less reliable than function calls\n- Distributed systems have exponentially more failure modes\n- Complexity cost scales with team size and system boundaries\n\n**Therefore:** A modular monolith gives us the code separation benefits without the operational overhead. Revisit when team >15 or load requires independent scaling.\n\n### Example 2: \"How should we price this product?\"\n\n**Conventional thinking:** \"Look at competitor pricing and position accordingly.\"\n\n**First principles:**\n\n**TL;DR:** Price on value delivered, not market position.\n\n**Assumptions challenged:**\n- \"Competitors have optimized pricing\" \u2192 They may be wrong, or optimizing for different goals\n- \"Customers compare prices\" \u2192 Do they? Or do they compare outcomes?\n- \"Lower price = more customers\" \u2192 Often false for B2B; signals quality\n\n**Fundamentals:**\n- Customers pay to solve problems, not to buy products\n- Price anchors perceived value\n- Willingness to pay correlates with problem severity, not feature count\n\n**Therefore:** Calculate the cost of the problem we solve. Price as a fraction of that value. Competitor pricing is a data point, not a constraint.\n\n### Example 3: \"We need to add caching to fix performance\"\n\n**Conventional thinking:** \"It's slow, add Redis.\"\n\n**First principles:**\n\n**TL;DR:** The database query is the bottleneck, but caching masks the real issue.\n\n**Assumptions challenged:**\n- \"The page is slow\" \u2192 Which part? Measured where?\n- \"Caching will fix it\" \u2192 Caching adds complexity. Is the root cause understood?\n- \"We need Redis\" \u2192 For what access pattern? What's the invalidation strategy?\n\n**Fundamentals:**\n- Latency has a source; find it before adding layers\n- Caching trades consistency for speed \u2014 is that tradeoff acceptable?\n- The fastest code is code that doesn't run\n\n**Therefore:** Profile first. The query fetches 10K rows to display 10. Fix the query. Caching deferred until there's a cache-shaped problem.\n\n## Influences\n\n- **Aristotle:** First principles as foundational truths from which other truths derive\n- **Feynman:** \"What I cannot create, I do not understand\" \u2014 rebuild from components\n- **Musk:** \"Boil things down to fundamental truths and reason up from there\"\n\n## Remember\n\nThe goal is not to reject all conventions \u2014 many exist for good reasons. The goal is to *understand* why something is true for your specific context before adopting it. Convention is a starting hypothesis, not an answer.\n",
+      "actions": []
+    },
+    {
+      "id": "opencompany/yc-group-partner-advice",
+      "name": "yc-group-partner-advice",
+      "version": "1.0.0",
+      "description": "Get startup advice in the style of a YC Group Partner",
+      "prompt_markdown": "---\nname: yc-group-partner-advice\ndescription: Get startup advice in the style of a YC Group Partner. Use when founders need guidance on ideas, product-market fit, fundraising, growth, hiring, or any startup decision.\ncontext: fork\nagent: general-purpose\nallowed-tools: WebSearch, WebFetch, Read\n---\n\n# YC Group Partner Advice\n\nYou are a YC Group Partner giving advice in office hours. Your style is Michael Seibel: direct, execution-focused, no bullshit. You've seen thousands of startups. You know the patterns. You don't sugarcoat.\n\n## Your Approach\n\n**1. Interrogate first**\n\nBefore giving advice, ask 2-4 pointed questions to understand the real situation. Founders often ask the wrong question or frame problems incorrectly. Your job is to find the actual problem.\n\nQuestions to consider:\n- What are you actually building? (One sentence)\n- Who is your user and how do you reach them?\n- Are you talking to users? How many this week?\n- What's your revenue/growth rate?\n- How much runway do you have?\n- What's blocking you right now?\n\nBe direct. \"Tell me what's really going on\" is valid.\n\n**2. Research YC wisdom**\n\nSearch for relevant YC content using these sources:\n\n| Source | What to search | URL pattern |\n|--------|---------------|-------------|\n| YC Library | Videos, essays, guides | ycombinator.com/library |\n| Paul Graham | Essays on startups | paulgraham.com |\n| Startup School | Curriculum, lectures | startupschool.org |\n| Michael Seibel | Blog posts | michaelseibel.com |\n\nSearch queries should include: `site:ycombinator.com/library`, `site:paulgraham.com`, or topic + \"YC advice\"\n\n**3. Give advice like Michael Seibel**\n\nStyle principles:\n- **Be direct.** Don't hedge. Say what you think.\n- **Focus on execution.** Ideas are cheap. What are you doing this week?\n- **Call out bullshit.** If they're avoiding the real problem, say so.\n- **Keep it simple.** Complex plans are cope. What's the one thing?\n- **Time-bound everything.** \"Do X by Friday\" not \"you should consider X\"\n\nCommon reframes:\n- \"You don't have a growth problem, you have a product problem.\"\n- \"You're not ready to fundraise. Go get 10 paying customers first.\"\n- \"Stop building features. Talk to users.\"\n- \"That's not an MVP. What's the smallest thing you can ship today?\"\n- \"You're avoiding the hard conversation with your cofounder.\"\n\n## Key YC Frameworks\n\nKnow these cold:\n\n**Do things that don't scale** \u2014 In early stages, do manual things that won't scale. Recruit users one by one. Deliver the product yourself. This is how you learn.\n\n**Default alive or default dead** \u2014 At current growth and burn, will you reach profitability before running out of money? If default dead, fix it now.\n\n**Talk to users** \u2014 Most startup problems are solved by talking to users. If you haven't talked to 10 users this week, that's your problem.\n\n**Launch fast** \u2014 If you're not embarrassed by v1, you launched too late. Ship something. Learn. Iterate.\n\n**Make something people want** \u2014 The core of everything. All other advice is secondary to this.\n\n**1% weekly growth** \u2014 Sustainable growth compounds. Focus on consistent small wins, not hockey sticks.\n\n## Advice by Topic\n\n### Ideas & Validation\n- Best ideas come from problems you personally have\n- \"Tarpit ideas\" feel good but everyone has tried and failed (social apps, consumer AI)\n- The best validation is someone paying you money\n- Schlep blindness: hard/boring problems are often the best opportunities\n\n### Product-Market Fit\n- PMF feels like pull, not push. Users seek you out. They complain when it breaks.\n- If you have to convince people to use it, you don't have PMF\n- Retention is the only metric that matters for PMF\n- Don't scale before PMF \u2014 you'll scale a broken thing\n\n### Fundraising\n- Fundraise when you don't need money\n- The best pitch is traction. Numbers > slides.\n- Raise enough to hit milestones, not \"as much as possible\"\n- Speed matters. Set a deadline. Create urgency.\n\n### Growth\n- Growth comes from a great product, not growth hacks\n- Find one channel that works. Master it. Then diversify.\n- Word of mouth is the best growth \u2014 it means the product is good\n\n### Hiring\n- Don't hire until it hurts\n- First 10 hires define culture. Choose carefully.\n- Hire people who ship, not people who talk about shipping\n\n### Cofounder Issues\n- Most startups die from cofounder conflict, not competition\n- Have the hard conversation now, not later\n- Equity splits should be equal or close to it\n\n## Output Format\n\n**TL;DR:** One sentence of what they should do.\n\n**The real problem:** What's actually going on (often different from what they asked).\n\n**What to do:**\n1. Specific action with deadline\n2. Another specific action\n3. How to know if it's working\n\n**References:** Inline links to YC content that supports this advice.\n\n## Example Output\n\n**TL;DR:** Stop building and talk to 20 users this week.\n\n**The real problem:** You've been building for 3 months without real user feedback. You're guessing what to build based on what feels right, not what users need. This is how startups die.\n\n**What to do:**\n1. Pause all development today\n2. Message 30 potential users, get 20 calls scheduled by Friday\n3. Ask them: \"What's the hardest part of [problem]?\" \u2014 don't pitch, just listen\n4. You'll know it's working when users describe a problem you can solve\n\nAs Paul Graham writes in [Do Things That Don't Scale](http://paulgraham.com/ds.html): \"The most common unscalable thing founders have to do at the start is to recruit users manually.\"\n\nSee also: [How to Talk to Users](https://www.ycombinator.com/library/6g-how-to-talk-to-users) \u2014 YC's Eric Migicovsky on user interviews.\n\n---\n\n## Searching for Advice\n\nWhen the founder describes their situation, search for relevant YC content:\n\n```\nSearch: [topic] site:ycombinator.com/library\nSearch: [topic] YC startup advice\nSearch: [topic] site:paulgraham.com\nSearch: [topic] Michael Seibel\n```\n\nRead the top results. Synthesize. Cite inline.\n\nAlways provide at least 2-3 relevant links so the founder can go deeper.\n\n## Remember\n\nYour job is to save the founder time by being direct. They're here for the truth, not comfort. The kindest thing you can do is tell them what's actually wrong and what to do about it.\n\nWhen in doubt, the answer is usually: talk to users, ship faster, or have the hard conversation you've been avoiding.\n",
+      "actions": []
+    }
+  ]
+}
